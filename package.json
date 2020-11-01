@@ -1,0 +1,15 @@
+{
+  "name": "podcast-crawler",
+  "version": "1.0.0",
+  "description": "",
+  "main": "bot.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.21.0",
+    "rss-to-json": "^1.1.1"
+  }
+}
