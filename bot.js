@@ -23,11 +23,29 @@ let alabaster = "https://pinecast.com/feed/alabasters-haberdashery"
 // Use connect method to connect to the Server
 MongoClient.connect(url, {useNewUrlParser: true, useUnifiedTopology: true}, function(err, client) {
     const db = client.db(process.env.MONGO_DATABASE)
+    const collection = db.collection(process.env.MONGO_COLLECTION)
+
     assert.strictEqual(null, err);   
     console.log("Connected successfully to server");
-    client.close()
-});
 
+    // something async needs to go into here
+    collection.find({}).toArray( async function(err, docs) {
+        try {
+            await assert.strictEqual(err, null);
+            await console.log("Found the following records");
+            await console.log(docs);
+
+            client.close(function() {
+                console.log("close connection")
+            })
+        } catch{
+            console.log(err)
+        }
+        // callback(docs);
+      });
+
+
+})
 
 // // getting title, description, image
 // Feed.load(alabaster).then(rss => {
